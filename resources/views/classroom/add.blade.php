@@ -34,3 +34,7 @@
 @endforeach
 </table>
 @endisset
+
+<div>
+	<p>Hello</p>
+</div>
