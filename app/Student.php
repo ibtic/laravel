@@ -5,7 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Student extends Model
+use Illuminate\Foundation\Auth\User;
+
+class Student extends User
 {
     //
     
@@ -29,5 +31,24 @@ class Student extends Model
        return $this->hasOne('App\Classroom', 'id', 'classroom_id'); 
          
     }
+
+    public function getRememberToken()
+    
+    {
+
+       return null; // not supported
+    } 
+
+    public function setRememberToken($value)
+
+    {
+  		// not supported
+	} 
+
+	public function getRememberTokenName()
+
+	{
+	  return null; // not supported
+	}
 
 }

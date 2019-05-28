@@ -80,8 +80,16 @@
             @endif
 
             <div class="content">
+                <div>
+                    @if(Session::has('msg'))
+                    <p>{{ session('msg')}}</p>
+                    {{ Session::forget('msg')}}
+                    @endif
+
+                </div>
                 <div class="title m-b-md">
-                   {{ config('database.default') }}
+                   @lang('perso.hello',['username'=>Auth::user()->name])<br>
+                   <span>{{ Auth::user()->created_at->diffForHumans(now()) }}</span>
                 </div>
 
                 <div class="links">
@@ -93,7 +101,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
-                <button class="btn btn-primary">ok</button>
+                <a class="btn btn-primary" href="{{ route('handleStudentLogout')}}">LOGOUT</a>
             </div>
 
         </div>

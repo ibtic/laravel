@@ -2,6 +2,16 @@
 
  {{ csrf_field() }}
 
+@if ($errors->any())
+   <div class="alert alert-danger">
+       <ul>
+           @foreach ($errors->all() as $error)
+               <li>{{ $error }}</li>
+           @endforeach
+       </ul>
+   </div>
+@endif
+
 <input type="text" name="name">
 <input type="text" name="email">
 <input type="text" name="password">

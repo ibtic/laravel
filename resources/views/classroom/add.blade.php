@@ -1,10 +1,10 @@
 
-<form action="{{ route('handleAddClassroom') }}" method="post">
+<form action="{{ route('handleAddClassroom') }}" method="post" enctype="multipart/form-data">
 
  {{ csrf_field() }}
 
 <input type="text" name="title">
-<input type="text" name="photo">
+<input type="file" name="photo">
 <button type="submit">OK</button>
 	
 
@@ -15,6 +15,8 @@
 
 <thead>Affichage</thead>
 
+{{ trans_choice('perso.class',0)}}
+
 @foreach($classrooms as $classroom)
 
 <tr>
@@ -24,17 +26,18 @@
 		<ul>
 			@foreach($classroom->students as $student)
 			<li>{{ $student->name }}</li>
-
-			<a href="{{route ('handleDeleteStudent',['id'=>$student->id])  }}">Delete</a>
+            @auth
+			<a href="{{route ('handleDeleteStudent', ['id'=>cryptageID($student->id)])  }}">Delete</a>
+			<a href="{{route ('showUpdateStudent', ['id'=>cryptageID($student->id)])  }}">Modifier</a>
+			@endauth
 			@endforeach
 		</ul>
 	</td>
+	<td><img src="{{ asset($classroom->image) }}"></td>
 </tr>
 
 @endforeach
 </table>
 @endisset
 
-<div>
-	<p>Hello</p>
-</div>
+<a href="{{route('showStudentLogin')}}">LOGIN</a>
